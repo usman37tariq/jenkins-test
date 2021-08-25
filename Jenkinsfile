@@ -32,8 +32,8 @@ pipeline {
     
     stage('Deploy App') {
       steps {
-        script {
-          sh 'envsubst < ${WORKSPACE}/hellowhale.yml | kubectl apply -f -' 
+         withKubeConfig([credentialsId: 'kubeconfig']) {
+          sh 'cat hellowhale.yml | sed "s/{{BUILD_ID}}/$BUILD_ID/g" | kubectl apply -f -'
         }
       }
     }
