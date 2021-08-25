@@ -32,7 +32,7 @@ pipeline {
     
     stage('Deploy App') {
       steps {
-         withKubeConfig([credentialsId: 'kubeconfig']) {
+         withKubeConfig([credentialsId: 'mykubeconfig']) {
           sh 'cat hellowhale.yml | sed "s/{{BUILD_ID}}/$BUILD_ID/g" | kubectl apply -f -'
         }
       }
