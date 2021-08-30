@@ -33,7 +33,7 @@ myapp.push("${env.BUILD_ID}")
 stage('Deploy App') {
 steps {
  withKubeConfig([credentialsId: 'mykubeconfig']) {
-          sh 'kubectl apply -f hellowhale.yml'
+  sh 'kubectl apply -f hellowhale.yml'}
 
 }
 }
