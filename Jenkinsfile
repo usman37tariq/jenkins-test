@@ -32,7 +32,8 @@ myapp.push("${env.BUILD_ID}")
 
 stage('Deploy App') {
 steps {
-kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "kubeconfig")
+ withKubeConfig([credentialsId: 'mykubeconfig']) {
+          sh 'kubectl apply -f hellowhale.yml'
 
 }
 }
